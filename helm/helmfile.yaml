@@ -1,0 +1,21 @@
+releases:
+  - name: prometheus
+    namespace: default
+    createNamespace: true
+    chart: prometheus-community/kube-prometheus-stack
+    values:
+      - ./configs/prometheus-value.yaml
+    
+  - name: redis-exporter
+    namespace: default
+    createNamespace: true
+    chart: prometheus-community/prometheus-redis-exporter
+    values:
+      - ./configs/redis-value.yaml
+  
+  - name: postgres-exporter
+    namespace: default
+    createNamespace: true
+    chart: prometheus-community/prometheus-postgres-exporter
+    values:
+      - ./configs/postgres-value.yaml

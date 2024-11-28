@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-flask
+  template:
+    metadata:
+      labels:
+        app: app-flask
+    spec:
+      containers:
+      - name: app-flask
+        image: app-flask:v1
+        imagePullPolicy: Never
+        env:
+        - name: FLASK_ENV
+          value: "development"
+        - name: DEBUG_METRICS
+          value: "1"
+        ports:
+        - containerPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        ports:
+        - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        env:
+        - name: POSTGRES_USER
+          value: "user"
+        - name: POSTGRES_PASSWORD
+          value: "senhafacil"
+        - name: POSTGRES_DB
+          value: "postgres"
+        ports:
+        - containerPort: 5432
