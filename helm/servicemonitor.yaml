@@ -23,12 +23,12 @@ metadata:
   labels:
     release: prometheus
 spec:
-  selector: 
+  selector:
     matchLabels:
-      app: postgres
+      app: prometheus-postgres-exporter
+      release: postgres-exporter
   endpoints:
     - port: http
-      path: /metrics
       interval: 30s
   namespaceSelector:
     matchNames:

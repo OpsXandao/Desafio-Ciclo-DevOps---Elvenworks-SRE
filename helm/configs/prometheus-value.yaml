@@ -1,10 +1,10 @@
 prometheus:
   prometheusSpec:
-    additionalScrapeConfigs: |
-      - job_name: postgres-exporter
-        static_configs:
-          - targets:
-            - postgres-exporter-prometheus-postgres-exporter:80
+    # additionalScrapeConfigs: |
+    #   - job_name: postgres-exporter
+    #     static_configs:
+    #       - targets:
+    #         - postgres-exporter-prometheus-postgres-exporter:80
               
     serviceMonitorSelector:
       matchLabels:
